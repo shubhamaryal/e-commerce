@@ -1,4 +1,3 @@
-import { LucideChartBarDecreasing } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Product {
