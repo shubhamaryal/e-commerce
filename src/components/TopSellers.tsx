@@ -1,4 +1,3 @@
-import { HandHelping } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface Author {
@@ -37,28 +36,35 @@ const TopSellers = () => {
   };
 
   return (
-    <div className="bg-white p-5 mx-5 mt-[5rem] border w-[23rem] rounded">
-      <h2 className="text-xl font-bold mb-5">Top Sellers</h2>
-      <ul>
-        {authors.map((authors, index) => (
-          <li key={index} className="flex items-center justify-between mb-4">
-            <section className="flex justify-center items-center">
+    <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+      <h2 className="text-xl font-bold text-gray-900 mb-4 sm:mb-6">
+        Top Sellers
+      </h2>
+      <ul className="space-y-3 sm:space-y-4">
+        {authors.map((author, index) => (
+          <li
+            key={index}
+            className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+          >
+            <div className="flex items-center space-x-3 sm:space-x-4 mb-2 sm:mb-0 min-w-0">
               <img
-                src={authors.image}
-                alt={authors.name}
-                className="w-[25%] h-[25%] justify-center rounded-full"
+                src={author.image}
+                alt={author.name}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white shadow-sm flex-shrink-0"
               />
-              <span className="ml-4">{authors.name}</span>
-            </section>
+              <span className="font-medium text-gray-900 truncate">
+                {author.name}
+              </span>
+            </div>
             <button
               onClick={() => handleFollowClick(index)}
-              className={`py-1 px-3 rounded ${
-                authors.isFollowing
-                  ? "bg-red-500 text-white"
-                  : "bg-black text-white"
+              className={`px-3 sm:px-4 py-2 rounded-lg font-medium transition-colors duration-200 whitespace-nowrap text-sm sm:text-base ${
+                author.isFollowing
+                  ? "bg-red-100 text-red-600 hover:bg-red-200"
+                  : "bg-indigo-100 text-indigo-600 hover:bg-indigo-200"
               }`}
             >
-              {authors.isFollowing ? "Unfollow" : "Follow"}
+              {author.isFollowing ? "Unfollow" : "Follow"}
             </button>
           </li>
         ))}

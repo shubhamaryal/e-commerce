@@ -91,62 +91,73 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-64 p-5 h-screen">
-      <h1 className="text-2xl font-bold mb-10 mt-4">React Store</h1>
-      <section>
-        <input
-          type="text"
-          className="border-2 rounded px-2 sm:mb-0"
-          placeholder="Search Products"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <div className="flex justify-center items-center">
+    <div className="w-full lg:w-72 p-4 lg:p-6 h-auto lg:h-screen bg-white shadow-lg lg:fixed lg:left-0 overflow-y-auto">
+      <h1 className="text-2xl lg:text-3xl font-bold mb-6 lg:mb-8 text-indigo-600">
+        React Store
+      </h1>
+      <section className="space-y-4 lg:space-y-6">
+        <div className="relative">
           <input
             type="text"
-            className="border-2 mr-2 px-5 py-3 mb-3 w-full"
-            placeholder="min"
-            value={minPrice ?? ""}
-            onChange={handleMinPriceChange}
-          />
-          <input
-            type="text"
-            className="border-2 mr-2 px-5 py-3 mb-3 w-full"
-            placeholder="max"
-            value={maxPrice ?? ""}
-            onChange={handleMaxPriceChange}
+            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200"
+            placeholder="Search Products"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
 
-        {/* Categories Section */}
-        <div className="mb-5">
-          <h2 className="text-xl font-semibold mb-3">Categories</h2>
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-gray-700">Price Range</h2>
+          <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+            <input
+              type="number"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="Min"
+              value={minPrice ?? ""}
+              onChange={handleMinPriceChange}
+            />
+            <input
+              type="number"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              placeholder="Max"
+              value={maxPrice ?? ""}
+              onChange={handleMaxPriceChange}
+            />
+          </div>
         </div>
-        <section>
-          {categories.map((category, index) => (
-            <label key={index} className="block mb-2 ">
-              <input
-                type="radio"
-                name="category"
-                value={category}
-                onChange={() => handleRadioChangeCategories(category)}
-                className="mr-2 w-[16px] h-[16px]"
-                checked={selectedCategory === category}
-              />
-              {category.toUpperCase()}
-            </label>
-          ))}
-        </section>
 
-        {/* Keyword Section */}
-        <div className="mb-5 mt-4">
-          <h2 className="text-xl font-semibold mb-3">Keywords</h2>
-          <div>
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-gray-700">Categories</h2>
+          <div className="space-y-2">
+            {categories.map((category, index) => (
+              <label
+                key={index}
+                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="category"
+                  value={category}
+                  onChange={() => handleRadioChangeCategories(category)}
+                  className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
+                  checked={selectedCategory === category}
+                />
+                <span className="text-gray-700 truncate">
+                  {category.toUpperCase()}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-lg font-semibold text-gray-700">Keywords</h2>
+          <div className="flex flex-wrap gap-2">
             {keywords.map((keyword, index) => (
               <button
                 key={index}
                 onClick={() => handleKeywordClick(keyword)}
-                className="block mb-2 px-4 py-2 w-full text-left border rounded hover:bg-gray-200"
+                className="px-4 py-2 rounded-full bg-gray-100 hover:bg-indigo-100 text-gray-700 hover:text-indigo-600 transition-colors duration-200"
               >
                 {keyword.toUpperCase()}
               </button>
@@ -156,7 +167,7 @@ const Sidebar = () => {
 
         <button
           onClick={handleResetFilters}
-          className="w-full mb-[4rem] py-2 bg-black text-white rounded mt-5"
+          className="w-full py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
         >
           Reset Filters
         </button>

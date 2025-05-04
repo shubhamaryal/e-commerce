@@ -105,45 +105,49 @@ const MainContent = () => {
   };
 
   return (
-    <section className="xl:w-[55rem] lg:w-[55rem] sm:w-[40rem] xs:w-[20rem] p-5">
-      <div className="mb-5">
-        <div className="flex flex-col sm:flex-row justify-between items-center">
-          <div className="relative mb-5 mt-5">
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="border px-4 py-2 rounded-full flex items-center"
-            >
-              <Tally3 className="mr-2" />
-              {filter === "all"
-                ? "Filter"
-                : filter.charAt(0).toLowerCase() + filter.slice(1)}
-            </button>
-            {/* if the filter button is clicked the dropdown will appear */}
-            {dropdownOpen && (
-              <div className="absolute bg-white border border-gray-300 rounded mt-2 w-full sm:w-40">
-                <button
-                  onClick={() => setFilter("cheap")}
-                  className="bloxk px-4 py-2 w-full text-left hover:bg-gray-200"
-                >
-                  Cheap
-                </button>
-                <button
-                  onClick={() => setFilter("expensive")}
-                  className="bloxk px-4 py-2 w-full text-left hover:bg-gray-200"
-                >
-                  Expensive
-                </button>
-                <button
-                  onClick={() => setFilter("popular")}
-                  className="bloxk px-4 py-2 w-full text-left hover:bg-gray-200"
-                >
-                  Popular
-                </button>
-              </div>
-            )}
+    <section className="lg:ml-72 p-4 sm:p-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <div className="flex justify-between items-center">
+            <div className="relative">
+              <button
+                onClick={() => setDropdownOpen(!dropdownOpen)}
+                className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              >
+                <Tally3 className="w-5 h-5" />
+                <span className="font-medium">
+                  {filter === "all"
+                    ? "Filter"
+                    : filter.charAt(0).toUpperCase() + filter.slice(1)}
+                </span>
+              </button>
+              {dropdownOpen && (
+                <div className="absolute z-10 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200">
+                  <button
+                    onClick={() => setFilter("cheap")}
+                    className="block w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    Cheap
+                  </button>
+                  <button
+                    onClick={() => setFilter("expensive")}
+                    className="block w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    Expensive
+                  </button>
+                  <button
+                    onClick={() => setFilter("popular")}
+                    className="block w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    Popular
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        <div className="grid grid-cols-4 sm:grid-cols-3 md:grid-cols-4 gap-5">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
           {filteredProducts.map((product) => (
             <BookCard
               key={product.id}
@@ -155,25 +159,24 @@ const MainContent = () => {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-5">
-          {/* Previous button*/}
+        <div className="flex flex-col sm:flex-row justify-center items-center mt-8 space-y-4 sm:space-y-0 sm:space-x-2">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="border px-4 py-2 mx-2 rounded-full"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 w-full sm:w-auto"
           >
             Previous
           </button>
 
-          {/* 1234 */}
-          <div className="flex flex-wrap justify-center">
-            {/* Pagination */}
+          <div className="flex flex-wrap justify-center gap-2">
             {getPaginationButtons().map((page) => (
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`border px-4 py-2 mx-1 rounded-full ${
-                  page === currentPage ? "bg-black text-white" : ""
+                className={`px-4 py-2 rounded-lg transition-colors duration-200 ${
+                  page === currentPage
+                    ? "bg-indigo-600 text-white"
+                    : "border border-gray-300 hover:bg-gray-50"
                 }`}
               >
                 {page}
@@ -181,11 +184,10 @@ const MainContent = () => {
             ))}
           </div>
 
-          {/* Next button */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="border px-4 py-2 mx-2 rounded-full"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 w-full sm:w-auto"
           >
             Next
           </button>
