@@ -34,15 +34,15 @@ const PopularBlog = () => {
     },
   ];
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg mt-6">
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Popular Blogs</h2>
-      <ul className="space-y-6">
+    <div className="bg-white p-4 rounded-lg shadow-lg">
+      <h2 className="text-xl font-bold text-gray-900 mb-4">Popular Blogs</h2>
+      <ul className="space-y-3">
         {blogs.map((blog, index) => (
           <li
             key={index}
-            className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            className="p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200"
           >
-            <div className="space-y-3">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold text-gray-900">
                 {blog.title}
               </h3>

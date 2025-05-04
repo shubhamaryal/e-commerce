@@ -105,9 +105,9 @@ const MainContent = () => {
   };
 
   return (
-    <section className="lg:ml-72 p-4 sm:p-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
+    <section className="lg:ml-72 p-4 h-full">
+      <div className="max-w-7xl mx-auto h-full flex flex-col">
+        <div className="mb-4">
           <div className="flex justify-between items-center">
             <div className="relative">
               <button
@@ -147,7 +147,7 @@ const MainContent = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1 overflow-auto">
           {filteredProducts.map((product) => (
             <BookCard
               key={product.id}
@@ -159,11 +159,11 @@ const MainContent = () => {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center mt-8 space-y-4 sm:space-y-0 sm:space-x-2">
+        <div className="flex flex-col sm:flex-row justify-center items-center mt-4 space-y-2 sm:space-y-0 sm:space-x-2">
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 w-full sm:w-auto"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             Previous
           </button>
@@ -187,7 +187,7 @@ const MainContent = () => {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 w-full sm:w-auto"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
           >
             Next
           </button>
